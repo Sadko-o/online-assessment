@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { useCurrencyStore } from '../stores/currencyStore.js';
+import { useCurrencyStore } from '../stores/currencyStore';
 import CurrencyItem from '../components/CurrencyItem.vue';
 
 export default {
@@ -31,9 +31,9 @@ export default {
     getFlagSrc(currencyCode) {
       return ''; 
     },
-    removeFromFavourites(currency) {
+    removeFromFavourites(currencyTitle) {
       const store = useCurrencyStore();
-      store.toggleFavourite(currency);
+      store.toggleFavourite(currencyTitle);
     }
   }
 };

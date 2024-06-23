@@ -27,9 +27,9 @@
       <p>Please choose a date.</p>
     </div>
     <div v-else>
-
       <div v-for="(currency, index) in paginatedCurrencies" :key="index">
-        <CurrencyItem :currency="currency" :flagSrc="getFlagSrc(currency.title)" @toggle-favorite="toggleFavorite" />
+        <CurrencyItem :currency="currency" :flagSrc="getFlagSrc(currency.title)"
+          :isFavorited="isFavorited(currency.title)" @toggle-favorite="toggleFavorite" />
       </div>
 
       <div class="pagination">
@@ -95,7 +95,7 @@ export default {
       this.store.getCurrencies(this.selectedDate);
     },
     getFlagSrc(currencyCode) {
-      return ''; // Default to empty if no flag is found
+      return ''; 
     },
     previousPage() {
       if (this.currentPage > 1) {
@@ -107,11 +107,12 @@ export default {
         this.currentPage++;
       }
     },
-    toggleFavorite(currencyTitle) {
-      const currency = this.currencies.find(c => c.title === currencyTitle);
-      if (currency) {
-        this.store.toggleFavourite(currency);
-      }
+    toggleFavorite(currency) {
+      console.log('toggleFavorite', currency);
+      this.store.toggleFavourite(currency);
+    },
+    isFavorited(currencyTitle) {
+      return this.store.favourites.some(c => c && c.title === currencyTitle);
     }
   },
   watch: {

@@ -15,7 +15,7 @@ import NavBar from './components/NavBar.vue';
   color: #2c3e50;
   margin-top: 60px;
   width: 100vw;
-  height: 100%;
+  height: 100vh;
   margin:0;
   padding: 0;
 }

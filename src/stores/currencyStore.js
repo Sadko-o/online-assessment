@@ -27,10 +27,13 @@ export const useCurrencyStore = defineStore('currencyStore', () => {
     }));
   };
 
-  const toggleFavourite = (currencyTitle) => {
-    const index = favourites.value.findIndex(fav => fav.title === currencyTitle);
+  const toggleFavourite = (currency) => {
+    if (!currency || !currency.title) return;
+    console.log(currency.title)
+    
+    const index = favourites.value.findIndex(fav => fav.title === currency.title);
+    console.log(index);
     if (index === -1) {
-      const currency = currencies.value.find(c => c.title === currencyTitle);
       favourites.value.push(currency);
     } else {
       favourites.value.splice(index, 1);
