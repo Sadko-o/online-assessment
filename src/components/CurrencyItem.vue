@@ -4,7 +4,7 @@
             <font-awesome-icon :icon="[isFavorited ? 'fas' : 'far', 'heart']" @click="toggleFavorite"
                 class="heart-icon" />
         </div>
-        <img :src="flagSrc" alt="Country flag" v-if="flagSrc" />
+        <span :class="flagClass" class="currency-flag"></span>
         <div class="currency-details">
             <div>{{ currency.fullname }}</div>
             <div>{{ currency.title }}</div>
@@ -21,22 +21,19 @@ export default {
             type: Object,
             required: true
         },
-        flagSrc: {
-            type: String,
-            required: false,
-            default: ''
-        },
         isFavorited: {
             type: Boolean,
             required: false,
             default: false
         }
     },
+    computed: {
+        flagClass() {
+            return `currency-flag currency-flag-${this.currency.title.toLowerCase()}`;
+        }
+    },
     methods: {
         toggleFavorite() {
-            console.log('toggleFavorite');
-            console.log(this.currency);
-            console.log(this.currency.value);
             this.$emit('toggle-favorite', this.currency);
         }
     }
@@ -68,5 +65,11 @@ export default {
     cursor: pointer;
     color: red;
     font-size: 20px;
+}
+
+.currency-flag {
+    width: 32px;
+    height: 24px;
+    margin-right: 10px;
 }
 </style>

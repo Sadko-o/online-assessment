@@ -95,7 +95,7 @@ export default {
       this.store.getCurrencies(this.selectedDate);
     },
     getFlagSrc(currencyCode) {
-      return ''; 
+      return '';
     },
     previousPage() {
       if (this.currentPage > 1) {

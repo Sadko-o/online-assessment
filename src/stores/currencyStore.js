@@ -30,7 +30,7 @@ export const useCurrencyStore = defineStore('currencyStore', () => {
   const toggleFavourite = (currency) => {
     if (!currency || !currency.title) return;
     console.log(currency.title)
-    
+
     const index = favourites.value.findIndex(fav => fav.title === currency.title);
     console.log(index);
     if (index === -1) {
